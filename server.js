@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 4000;
 // Core middleware
 app.use(express.json());
 app.use(cors({
-  origin: "https://food-orders-web.netlify.app/",
+  origin: "https://food-orders-web.netlify.app",
   credentials: true,
 }));
 
