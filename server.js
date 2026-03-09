@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(cors({
   origin: ["http://localhost:5173", "https://food-orders-web.netlify.app"],
   credentials: true,
+  allowedOrgins: ["http://localhost:5173", "https://food-orders-web.netlify.app"],
 }));
 
 // Connect to MongoDB once on startup
