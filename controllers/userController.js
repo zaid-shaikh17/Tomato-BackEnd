@@ -46,7 +46,7 @@ const registerUser = async (req, res) => {
         res.json({
             success: true,
             token,
-            user: { _id: user._id, name: user.name, email: user.email },
+            user: { _id: user._id, name: user.name, email: user.email, role: user.role },
             message: "Account created successfully!"
         });
 
@@ -77,7 +77,7 @@ const loginUser = async (req, res) => {
         res.json({
             success: true,
             token,
-            user: { _id: user._id, name: user.name, email: user.email },
+            user: { _id: user._id, name: user.name, email: user.email, role: user.role },
             message: "Login successful!"
         });
 

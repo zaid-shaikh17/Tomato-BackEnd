@@ -49,3 +49,23 @@ export const userOrders = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
+// Get orders for delivery partner
+export const getDeliveryOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({ status: "Out for Delivery" }).sort({ createdAt: -1 });
+    res.json({ success: true, data: orders });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};
+
+// Mark order as delivered
+export const markDelivered = async (req, res) => {
+  try {
+    await orderModel.findByIdAndUpdate(req.body.orderId, { status: "Delivered" });
+    res.json({ success: true, message: "Order delivered" });
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
+};
