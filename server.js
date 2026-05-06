@@ -19,7 +19,8 @@ app.use(
       "http://localhost:5174",
       "http://localhost:5175",
       "https://food-orders-web.netlify.app",
-      "https://tomato-admin-sand.vercel.app"
+      "https://tomato-admin-sand.vercel.app",
+      "https://tomato-delivery-pink.vercel.app"
     ],
     credentials: true,
   }),
