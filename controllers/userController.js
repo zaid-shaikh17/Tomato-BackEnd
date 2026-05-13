@@ -87,4 +87,41 @@ const loginUser = async (req, res) => {
     }
 };
 
+
+// Create Delivery Partner (Admin Only)
+export const createDeliveryPartner = async (req, res) => {
+  const { name, email, password } = req.body;
+
+  try {
+    const exists = await userModel.findOne({ email });
+    if (exists) {
+      return res.json({ success: false, message: "Email already exists" });
+    }
+
+    if (!validator.isEmail(email)) {
+      return res.json({ success: false, message: "Invalid email" });
+    }
+
+    if (password.length < 8) {
+      return res.json({ success: false, message: "Password must be at least 8 characters" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = new userModel({
+      name,
+      email,
+      password: hashedPassword,
+      role: "delivery"
+    });
+
+    await newUser.save();
+
+    res.json({ success: true, message: "Delivery partner created successfully" });
+  } catch (error) {
+    res.json({ success: false, message: "Error creating delivery partner" });
+  }
+};
+
 export { registerUser, loginUser };
